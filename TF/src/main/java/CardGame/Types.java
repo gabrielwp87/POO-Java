@@ -1,0 +1,1 @@
+public enum tipos{água, fogo, elétrico, planta, psíquico }
