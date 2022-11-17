@@ -19,6 +19,41 @@ public class Deck {
         cardsInDeck = numberOfCardsInTheBeginning;
     }
 
+    public boolean isEmpty() {
+        return cardsInDeck == 0;
+    }
+
+    public void shuffle() {
+        int n = numberOfCardsInTheBeginning;
+        Random random = new Random();
+
+        for (int i = 0; i < numberOfCardsInTheBeginning; i++) {
+
+            // Pega um index aleatório e passa o após o index atual
+            // O argumento é um elo exclusivo (exclusive bound)
+            // Será trocado o elemento aleatório com o elemento atual
+
+            int randomValeu = i + random.nextint(n - i);
+            PokeCard randomCard = cards[randomValeu];
+            cards[randomValeu] = cards[i];
+            cards[i] = randomCard;
+        }
+    }
+
+    public PokeCard drawCard() throws IllegalArgumentException {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("Baralho vazio!")
+        }
+        return cards[--cardsInDeck];
+    }
+
+    public ImageIcon drawCardImage() throws IllegalArgumentException {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("Baralho vazio!");
+        }
+        return new ImageIcon(cards[--cardsInDeck].toString() + ".png");
+    }
+
 
 
 }
